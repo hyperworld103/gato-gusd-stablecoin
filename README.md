@@ -1,10 +1,9 @@
-# Velamis token contract
-
-Velamis is ERC20 token for Velamis tokenomics
+# GUSD stable coin
+GUSD is a stable coin for GATO token
 ### Installation
 ```sh
 # Clone the repo
-    git clone https://gitlab.com/merehead/velamis/velamis_token_contracts.git
+    git clone https://gitlab.com/merehead/gato/gato_swap_contracts.git
 # Install all dependencies
     npm install
 ```
@@ -20,59 +19,48 @@ npx hardhat test
 ```sh
 npx hardhat run scripts/deploy.js
 ```
+### Deployed Address
+```sh
+# BSC mainnet
+
+# BSC testnet
+    https://testnet.bscscan.com/address/0x427e46f8c93C0F7D9A8E7064Ae3c0A16d9185050
+```
 ### Modifiers
-##### onlyStopper
-    Executes only by Stopper
-##### onlyManager
-    Executes only by Manager
-##### isRunning
-    Check for the contract running
+##### onlyOwner
+    Executes only by owner
 ### Functions
 ##### Mutable
-    issueTokens() - issue the tokens every three months. onlyManager, isRunning
-    distributeTokens(uint8 index) - distribute the tokens with index as following tokenomics. onlyManager, isRunning
-            index 0 - PrivSaleWallet
-                  1 - PubSaleWallet
-                  2 - AdvisoryWallet
-                  3 - TeamWallet
-                  4 - EcoGrowthWallet
-                  5 - CompanyWallet
-                  6 - TreasuryWallet
-                  7 - StakingRewardWallet
-    burnTokens(uint256 amount) - burn the 10% of platform profits and commissions every quarter. onlyManager, isRunning
-    pauseContract() - pause the contract. onlyStopper
-    transfer(address to, uint256 amount) - transfer tokens to user. isRunning
-        Approve must be done before transfer.
-        to - address of receiver
+    mint(uint256 amount) - mint the GUSD by owner(onlyOwner)
+    burn(uint256 amount) - burn the GUSD 
+    transfer(address recipient, uint256 amount) - transfer tokens to user
+        recipient - address of receiver
         amount - transfered amount
-    transferFrom(address from, address to, uint256 amount) - transfer tokens to user. isRunning
-    Approve must be done before transfer.
-        from - address of sender
-        to - address of receiver
+    transferFrom(address sender, address recipient, uint256 amount) - transfer tokens to user
+        Approve must be done before transferFrom.
+        sender - address of sender
+        recipient - address of receiver
         amount - transfered amount
-    approve(address spender, uint256 amount) - approve token for user. isRunning
+    approve(address spender, uint256 amount) - approve token for user
         spender - address of spender
         amount - allowed amount
-    increaseAllowance(address spender, uint256 addedValue) - increase the allowed amount. isRunning
+    increaseAllowance(address spender, uint256 addedValue) - increase the allowed amount
         spender - address of spender
         addedValue - added amount
-    decreaseAllowance(address spender, uint256 subtractedValue) - decrease the allowed amount. isRunning
+    decreaseAllowance(address spender, uint256 subtractedValue) - decrease the allowed amount
         spender - address of spender
         subtractedValue - added amount
 ##### View
-    name() - returns token diplay name(string)
-    symbol() - returns token ticker(string)
-    decimals() - returns token decimal(uint8) 
+    getOwner() - returns the address of owner(address)
+    name() - returns coin diplay name(string)
+    symbol() - returns coin ticker(string)
+    decimals() - returns coin decimal(uint8) 
     allowance(address owner, address spender) - returns the allowed amount sent from owner to spender(uint256)
-        owner - owner of token
+        owner - owner of coin
         spender - address of spender
-    totalSupply() - returns the total supply of token(uint256)
+    totalSupply() - returns the total supply of coin(uint256)
     balanceOf(address account) - returns the balance of user(uint256)
-    issuanceTime() - returns the last issuance time(uint256)
-    issuanceIndex() - returns the issuance count(uint)
-    status() - returns the status of contract(bool)
-        true: running
-        false: paused
+
      
     
     
