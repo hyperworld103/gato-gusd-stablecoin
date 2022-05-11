@@ -3,7 +3,7 @@ GUSD is a stable coin for GATO token
 ### Installation
 ```sh
 # Clone the repo
-    git clone https://gitlab.com/merehead/gato/gato_swap_contracts.git
+    git clone https://github.com/stackpower103/gato-gusd-stablecoin.git
 # Install all dependencies
     npm install
 ```
